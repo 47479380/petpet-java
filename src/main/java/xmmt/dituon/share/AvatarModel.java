@@ -1,7 +1,5 @@
 package xmmt.dituon.share;
 
-import kotlinx.serialization.json.JsonArray;
-import kotlinx.serialization.json.JsonElement;
 
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
@@ -10,8 +8,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import xmmt.dituon.share.config.*;
+
 public class AvatarModel {
-    private Type imageType;
+    private ImageType imageType;
     protected AvatarType type;
     protected int[][] pos = {{0, 0, 100, 100}};
     protected short angle;
@@ -29,17 +31,17 @@ public class AvatarModel {
     private short frameIndex = 0;
 
     @Deprecated
-    public AvatarModel(AvatarData data, AvatarExtraDataProvider extraData, Type imageType) {
+    public AvatarModel(AvatarData data, AvatarExtraDataProvider extraData, ImageType imageType) {
         setImage(data.getType(), extraData);
         buildData(data, imageType);
     }
 
-    public AvatarModel(AvatarData data, GifAvatarExtraDataProvider extraData, Type imageType) {
+    public AvatarModel(AvatarData data, GifAvatarExtraDataProvider extraData, ImageType imageType) {
         setImage(data.getType(), extraData);
         buildData(data, imageType);
     }
 
-    private void buildData(AvatarData data, Type imageType) {
+    private void buildData(AvatarData data, ImageType imageType) {
         type = data.getType();
         posType = data.getPosType() != null ? data.getPosType() : AvatarPosType.ZOOM;
         setPos(data.getPos(), this.imageType = imageType);
@@ -89,7 +91,7 @@ public class AvatarModel {
         }
     }
 
-    private void setPos(JsonArray posElements, Type imageType) {
+    private void setPos(JsonArray posElements, ImageType imageType) {
         int i = 0;
         switch (posType) {
             case ZOOM:
@@ -140,7 +142,9 @@ public class AvatarModel {
     }
 
     private void buildImage() {
-        if (cropType != CropType.NONE) imageList = ImageSynthesis.cropImage(imageList, cropType, cropPos);
+        if (cropType != CropType.NONE) {
+            imageList = ImageSynthesis.cropImage(imageList, cropType, cropPos);
+        }
 
         for (Style style : styleList) {
             switch (style) {
@@ -202,7 +206,7 @@ public class AvatarModel {
     @Deprecated
     public float getNextAngle() {
         if (!rotate) return angle; //不旋转
-        if (imageType == Type.IMG) return new Random().nextInt(angle != 0 ? angle : 360); //IMG随机旋转
+        if (imageType == imageType.IMG) return new Random().nextInt(angle != 0 ? angle : 360); //IMG随机旋转
         return ((float) (360 / pos.length) * posIndex) + angle; //GIF自动旋转
     }
 
@@ -214,7 +218,7 @@ public class AvatarModel {
      */
     public float getAngle(short index) {
         if (!rotate) return angle; //不旋转
-        if (imageType == Type.IMG) return new Random().nextInt(angle != 0 ? angle : 360); //IMG随机旋转
+        if (imageType == imageType.IMG) return new Random().nextInt(angle != 0 ? angle : 360); //IMG随机旋转
         return ((float) (360 / pos.length) * index) + angle; //GIF自动旋转
     }
 

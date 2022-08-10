@@ -1,7 +1,9 @@
 package xmmt.dituon.share;
 
-import kotlinx.serialization.json.JsonArray;
-import kotlinx.serialization.json.JsonElement;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import xmmt.dituon.share.config.BackgroundData;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

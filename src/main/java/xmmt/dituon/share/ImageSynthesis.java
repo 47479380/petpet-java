@@ -1,6 +1,8 @@
 package xmmt.dituon.share;
 
 
+import xmmt.dituon.share.config.CropType;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

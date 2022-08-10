@@ -1,8 +1,8 @@
 package xmmt.dituon.share;
 
-import kotlin.Pair;
-import kotlinx.serialization.json.JsonArray;
-import kotlinx.serialization.json.JsonElement;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import xmmt.dituon.share.config.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -156,7 +156,7 @@ public class BasePetService {
                 }
             }
 
-            if (data.getType() == Type.GIF) {
+            if (data.getType() == ImageType.GIF) {
                 HashMap<Short, BufferedImage> stickerMap = new HashMap<>();
                 short imageNum = 0;
                 for (File file : Objects.requireNonNull(new File(key).listFiles())) {
@@ -173,7 +173,7 @@ public class BasePetService {
                 return new Pair<>(inputStream, "gif");
             }
 
-            if (data.getType() == Type.IMG) {
+            if (data.getType() == ImageType.IMG) {
                 BufferedImage sticker = getBackgroundImage(new File(key), data, avatarList, textList);
                 assert sticker != null;
                 InputStream inputStream = BaseImageMaker.makeImage(avatarList, textList, sticker, antialias);
@@ -238,7 +238,7 @@ public class BasePetService {
                 }
             }
 
-            if (data.getType() == Type.GIF) {
+            if (data.getType() == ImageType.GIF) {
                 HashMap<Short, BufferedImage> stickerMap = new HashMap<>();
                 short imageNum = 0;
                 for (File file : Objects.requireNonNull(new File(key).listFiles())) {
@@ -257,7 +257,7 @@ public class BasePetService {
                 return new Pair<>(inputStream, "gif");
             }
 
-            if (data.getType() == Type.IMG) {
+            if (data.getType() == ImageType.IMG) {
                 latch.await();
                 BufferedImage sticker = getBackgroundImage(new File(key), data, avatarList, textList);
                 assert sticker != null;
@@ -300,11 +300,11 @@ public class BasePetService {
         assert defaultRgba.length == 4;
         try { //rgb or rgba
             JsonArray jsonArray = (JsonArray) jsonElement;
-            if (jsonArray.getSize() == 3 || jsonArray.getSize() == 4) {
+            if (jsonArray.size() == 3 || jsonArray.size() == 4) {
                 defaultRgba[0] = Short.parseShort(jsonArray.get(0).toString());
                 defaultRgba[1] = Short.parseShort(jsonArray.get(1).toString());
                 defaultRgba[2] = Short.parseShort(jsonArray.get(2).toString());
-                defaultRgba[3] = jsonArray.getSize() == 4 ? Short.parseShort(jsonArray.get(3).toString()) : 255;
+                defaultRgba[3] = jsonArray.size() == 4 ? Short.parseShort(jsonArray.get(3).toString()) : 255;
             }
         } catch (Exception ignored) { //hex
             String hex = jsonElement.toString().replace("#", "").replace("\"", "");

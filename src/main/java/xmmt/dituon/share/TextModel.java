@@ -1,5 +1,7 @@
 package xmmt.dituon.share;
 
+import xmmt.dituon.share.config.*;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.List;

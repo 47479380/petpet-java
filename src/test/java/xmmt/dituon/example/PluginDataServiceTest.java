@@ -2,7 +2,7 @@ package xmmt.dituon.example;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import xmmt.dituon.share.BaseServiceConfig;
+import xmmt.dituon.share.config.BaseServiceConfig;
 
 import java.io.File;
 import java.io.IOException;

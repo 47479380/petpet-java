@@ -1,9 +1,9 @@
 package xmmt.dituon.example;
 
-import kotlin.Pair;
-import xmmt.dituon.share.AvatarExtraDataProvider;
 import xmmt.dituon.share.BasePetService;
-import xmmt.dituon.share.TextData;
+import xmmt.dituon.share.Pair;
+import xmmt.dituon.share.config.AvatarExtraDataProvider;
+import xmmt.dituon.share.config.TextData;
 
 import java.io.File;
 import java.io.InputStream;

@@ -1,5 +1,8 @@
 package xmmt.dituon.share;
 
+import xmmt.dituon.share.config.AvatarExtraDataProvider;
+import xmmt.dituon.share.config.GifAvatarExtraDataProvider;
+
 public class BaseConfigFactory {
 
     @Deprecated
