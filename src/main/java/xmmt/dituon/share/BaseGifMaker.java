@@ -1,6 +1,7 @@
 package xmmt.dituon.share;
 
 import com.madgag.gif.fmsware.AnimatedGifEncoder;
+import xmmt.dituon.share.config.Encoder;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
